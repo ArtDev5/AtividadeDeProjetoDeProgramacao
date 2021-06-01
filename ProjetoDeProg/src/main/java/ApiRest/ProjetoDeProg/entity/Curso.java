@@ -116,4 +116,9 @@ public class Curso {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", ementa=" + ementa
+				+ ", dataCadastro=" + dataCadastro + ", dataInicio=" + dataInicio + ", valor=" + valor + "]";
+	}
 }
