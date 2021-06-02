@@ -1,4 +1,4 @@
-package ApiRest.ProjetoDeProg.entity;
+package ApiRest.ProjetoDeProg.model;
 
 import java.util.Date;
 
@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "curso")
-public class Curso {
+public class CursoEntity {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -18,9 +18,25 @@ public class Curso {
 	private String nome;
 	private String descricao;
 	private String ementa;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataCadastro;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
 	private float valor;
+	
+	public CursoEntity() {
+		
+	}
+	
+	public CursoEntity(String nome, String descricao, String ementa, Date dataCadastro, Date dataInicio, float valor) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.ementa = ementa;
+		this.dataCadastro = dataCadastro;
+		this.dataInicio = dataInicio;
+		this.valor = valor;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -84,7 +100,7 @@ public class Curso {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Curso other = (Curso) obj;
+		CursoEntity other = (CursoEntity) obj;
 		if (dataCadastro == null) {
 			if (other.dataCadastro != null)
 				return false;
@@ -118,7 +134,9 @@ public class Curso {
 	}
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", ementa=" + ementa
+		return "CursoEntity [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", ementa=" + ementa
 				+ ", dataCadastro=" + dataCadastro + ", dataInicio=" + dataInicio + ", valor=" + valor + "]";
 	}
+	
+	
 }
