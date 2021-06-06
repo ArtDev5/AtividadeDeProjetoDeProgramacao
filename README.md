@@ -21,16 +21,16 @@ O controlador deve estar para o endereço /curso
 
 ### Configuração do H2
 
-# DATASOURCE
+DATASOURCE
 spring.datasource.url=jdbc:h2:file:./data/exemplo
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
 spring.datasource.password=
 
-# H2 Console
+H2 Console
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 
-# JPA
+JPA
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto=update
