@@ -63,6 +63,7 @@ public class AtualizarCursoDtoRequest {
 		curso.setDataCadastro(this.dataCadastro);
 		curso.setDataInicio(this.dataInicio);
 		curso.setValor(this.valor);
+		repositorio.save(curso);
 		return curso;
 		
 	}
