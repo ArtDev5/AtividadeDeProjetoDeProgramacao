@@ -1,6 +1,7 @@
 package ApiRest.ProjetoDeProg.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ApiRest.ProjetoDeProg.dto.AtualizarCursoDtoRequest;
 import ApiRest.ProjetoDeProg.dto.CursoDtoRequest;
 import ApiRest.ProjetoDeProg.dto.CursoDtoResponse;
 import ApiRest.ProjetoDeProg.model.CursoEntity;
@@ -46,6 +49,16 @@ public class cursoController {
 		return new ResponseEntity<>("Curso deletado!", HttpStatus.OK);
 	}
 	
-	
+	@PutMapping("/{id}")
+	public ResponseEntity<String> UpdateCurso(@PathVariable int id, @RequestBody AtualizarCursoDtoRequest updCurso) {
+		Optional<CursoEntity> optional = CursoRepository.findById(id);
+		
+		if(optional.isPresent()) {
+			updCurso.atualizar(id, CursoRepository);
+			return new ResponseEntity<>("Curso atualizado!", HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>("Curso não encontrado!", HttpStatus.NOT_FOUND);
+	}
 	
 }
